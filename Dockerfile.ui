@@ -1,4 +1,4 @@
-# stage 1
+# stage 1 - building project
 FROM node:18-alpine as builder
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
@@ -8,7 +8,7 @@ COPY ./ui/src ./src
 COPY ./ui/public ./public
 RUN yarn build
 
-# stage 2
+# stage 2 - creating image
 FROM nginx:1.22.1-alpine
 # Copy built assets from `builder` image
 COPY --from=builder /app/build /usr/share/nginx/html

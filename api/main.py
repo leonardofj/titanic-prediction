@@ -11,7 +11,7 @@ app = FastAPI(title="Titanic prediction", description=description)
 
 origins = ["http://localhost:3000", "localhost:3000"]
 
-
+# setting up CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

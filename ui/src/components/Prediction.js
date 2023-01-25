@@ -28,6 +28,7 @@ export default function Prediction() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        // calling the api
         axios.get("http://localhost:5000/api/make-prediction", {
             params: {
                 gender: gender,
@@ -36,7 +37,6 @@ export default function Prediction() {
             }
         })
             .then(res => {
-                console.log(res);
                 if (!res.data.survived) {
                     toast({
                         title: 'Prediction is unfortunate',

@@ -10,6 +10,10 @@ from sklearn.metrics import accuracy_score
 
 
 def train_titanic_model():
+    """
+    Model training based on https://risx3.github.io/titanic-analysis/
+    """
+
     train = pd.read_csv("../api/datasets/train.csv")
     print("Number of passengers in train dataset: " + str(len(train)))
 
@@ -25,6 +29,7 @@ def train_titanic_model():
         axis=1,
         inplace=True,
     )
+
     # Handling NULL values
     train_values = {"age": round(np.mean(train["age"]))}
     train = train.fillna(value=train_values)

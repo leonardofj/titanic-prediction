@@ -21,6 +21,7 @@ def predict(
     from passenger data.
     """
 
+    # preparing data for prediction
     input_data_dict = {
         "age": age,
         "sibsp": siblings_spouses,
@@ -34,12 +35,12 @@ def predict(
     }
     input_data_df = pd.DataFrame([input_data_dict])
 
-    # load the model
+    # loading the model
     try:
         my_model = pickle.load(open(MODEL_FILE, "rb"))
     except OSError as ex:
         raise HTTPException(status_code=404, detail="Model not found")
 
-    # make a prediction
+    # making a prediction
     prediction = my_model.predict(input_data_df)
     return prediction[0], MODEL_ACCURACY
