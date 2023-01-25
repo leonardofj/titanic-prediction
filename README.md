@@ -20,3 +20,4 @@ docker run --rm -p 3000:80 titanic-ui
 ```
 
 The project also contains a WIP `docker-compose` file.
+Docker-compose is not functional due to an issue with `proxy_pass`on nginx, leading to the frontend being unable to reach backend.
