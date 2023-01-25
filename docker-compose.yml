@@ -1,0 +1,13 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    image: titanic-api
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    image: titanic.ui
+    ports:
+      - "3000:80"

@@ -1,37 +1,48 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import {
+    Box,
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+    TableContainer,
+} from '@chakra-ui/react'
 
-class ShowData extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: []
-        }
-    }
-    componentDidMount() {
-        const url = "https://jsonplaceholder.typicode.com/posts";
-        fetch(url)
-            .then(response => response.json())
-            .then(json => this.setState({ posts: json }))
-    }
-    render() {
-        const { posts } = this.state;
-        return (
-            <div className="container">
-                <div className="jumbotron">
-                    <h1 className="display-4">Blog posts</h1>
-                </div>
-                {posts.map((post) => (
-                    <div className="card" key={post.id}>
-                        <div className="card-header">
-                            #{post.id} {post.title}
-                        </div>
-                        <div className="card-body">
-                            <p className="card-text">{post.body}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        );
-    }
+export default function ShowData() {
+    const [data, setData] = useState([{}]);
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/list-data")
+            .then(res => {
+                setData(res.data);
+            })
+    }, []);
+
+    return (
+        <Box >
+            <TableContainer width="100%" overflowX="hidden">
+                <Table size='sm' variant='striped' colorScheme='gray'>
+                    <Thead>
+                        <Tr>
+                            {Object.keys(data[0]).map((key) => (
+                                <Th>{key.split('_').join(' ')}</Th>
+                            ))}
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {data.map((item) => (
+                            <Tr key={item.id}>
+                                {Object.values(item).map((val) => (
+                                    <Td>{val === null ? "" : String(val)}</Td>
+                                ))}
+                            </Tr>
+                        ))}
+                    </Tbody>
+                </Table>
+            </TableContainer>
+        </Box>
+    );
 }
-export default ShowData;

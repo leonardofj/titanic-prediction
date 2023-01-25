@@ -21,16 +21,16 @@ import {
 export default function Prediction() {
     const [pclass, setPclass] = useState('1');
     const [gender, setGender] = useState('male');
-    const [age, setAge] = useState('');
+    const [age, setAge] = useState(0);
     const [survived, setSurvived] = useState('');
     const [accuracy, setAccuracy] = useState('');
     const toast = useToast();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.get("make-prediction", {
+        axios.get("http://localhost:5000/api/make-prediction", {
             params: {
-                sex: gender,
+                gender: gender,
                 class: parseInt(pclass),
                 age: age ? age : 0
             }
