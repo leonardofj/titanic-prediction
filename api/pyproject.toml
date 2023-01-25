@@ -11,6 +11,7 @@ python = "^3.10"
 fastapi = {extras = ["all"], version = "^0.89.1"}
 scikit-learn = "^1.2.0"
 pydantic = "^1.10.4"
+pandas = "^1.5.3"
 
 [tool.poetry.group.dev.dependencies]
 black = {version = "^23.1a1", allow-prereleases = true}
