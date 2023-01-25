@@ -2,11 +2,23 @@ from enum import Enum
 from typing import Any, Dict, List
 from lib.get_data import get_data
 from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
 from lib.predict import predict
 from pydantic import BaseModel, Field, validator
 
 description = "Receives passenger info and predicts survival on Titanic"
 app = FastAPI(title="Titanic prediction", description=description)
+
+origins = ["http://localhost:3000", "localhost:3000"]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class Gender(str, Enum):
@@ -62,7 +74,7 @@ class Data(BaseModel):
         return port_names.get(embarked)
 
 
-@app.get("/make-prediction", response_model=Prediction, tags=["Prediction"])
+@app.get("/api/make-prediction", response_model=Prediction, tags=["Prediction"])
 def make_a_prediction(
     gender: Gender,
     passenger_class: int = Query(..., example=1, ge=1, le=3, alias="class"),
@@ -94,7 +106,7 @@ def make_a_prediction(
 
 
 @app.get(
-    "/list-data",
+    "/api/list-data",
     response_model=List[Data],
     tags=["Get data"],
 )
