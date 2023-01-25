@@ -2,10 +2,12 @@ import React from 'react';
 import {
   ChakraProvider,
   Box,
-  Text,
-  VStack,
   Grid,
-  Tabs, TabList, TabPanels, Tab, TabPanel,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
   theme,
 } from '@chakra-ui/react';
 import Prediction from './components/Prediction';
@@ -14,22 +16,19 @@ import ShowData from './components/ShowData';
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
+      <Box >
         <Grid minH="50vh" p={3}>
-          <VStack spacing={7}>
-            <Text
-              color="teal.500"
-              fontSize="2xl"
-            >
-              Titanic prediction app
-            </Text>
-          </VStack>
+          <Box width="100%" height={60} bgImage='/header.png' bgPosition="top-left"
+            bgRepeat="no-repeat">
+            <Box p='4' textAlign="left" textColor="blue.500" fontSize="3xl" as='b'>
+              Titanic survival prediction
+            </Box>
+          </Box>
           <Tabs>
             <TabList>
               <Tab>Prediction</Tab>
               <Tab>Show data</Tab>
             </TabList>
-
             <TabPanels>
               <TabPanel>
                 <Prediction />
