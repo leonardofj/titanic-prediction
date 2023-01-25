@@ -8,13 +8,13 @@ MODEL_ACCURACY = 0.783
 
 
 def predict(
-    sex: str,
+    gender: str,
     passenger_class: int,
     age: int,
-    sibsp: int = 0,
-    parch: int = 0,
+    siblings_spouses: int = 0,
+    parents_children: int = 0,
     fare: float = 0,
-    port: str = "S",
+    port: str = "Southampton",
 ) -> Tuple[bool, float]:
     """
     Loads the prediction model and get a survival prediction
@@ -23,12 +23,12 @@ def predict(
 
     input_data_dict = {
         "age": age,
-        "sibsp": sibsp,
-        "parch": parch,
+        "sibsp": siblings_spouses,
+        "parch": parents_children,
         "fare": fare,
-        "male": 1 if sex == "male" else 0,
-        "Q": 1 if port == "Q" else 0,
-        "S": 1 if port == "S" else 0,
+        "male": 1 if gender == "male" else 0,
+        "Q": 1 if port == "Queenstown" else 0,
+        "S": 1 if port == "Southampton" else 0,
         "2": 1 if passenger_class == 2 else 0,
         "3": 1 if passenger_class == 3 else 0,
     }
