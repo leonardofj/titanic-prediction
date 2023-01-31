@@ -29,7 +29,7 @@ export default function Prediction() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // calling the api
-        axios.get("http://localhost:5000/api/make-prediction", {
+        axios.get("/api/make-prediction", {
             params: {
                 gender: gender,
                 class: parseInt(pclass),

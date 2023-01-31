@@ -74,7 +74,7 @@ class Data(BaseModel):
         return port_names.get(embarked)
 
 
-@app.get("/api/make-prediction", response_model=Prediction, tags=["Prediction"])
+@app.get("/make-prediction", response_model=Prediction, tags=["Prediction"])
 def make_a_prediction(
     gender: Gender,
     passenger_class: int = Query(..., example=1, ge=1, le=3, alias="class"),
@@ -106,7 +106,7 @@ def make_a_prediction(
 
 
 @app.get(
-    "/api/list-data",
+    "/list-data",
     response_model=List[Data],
     tags=["Get data"],
 )

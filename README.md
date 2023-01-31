@@ -8,7 +8,7 @@ Running backend on docker:
 ```
 cd titanic-prediction  
 docker build -f Dockerfile.api -t titanic-api .  
-docker run --rm -p 5000:5000 titanic-api  
+docker run --rm -p 5000:80 titanic-api  
 ```
 
 The api documentation can be found on http://0.0.0.0:5000/docs
@@ -19,5 +19,7 @@ docker build -f Dockerfile.ui -t titanic-ui .
 docker run --rm -p 3000:80 titanic-ui
 ```
 
-The project also contains a WIP `docker-compose` file.
-Docker-compose is not functional due to an issue with `proxy_pass`on nginx, leading to the frontend being unable to reach backend.
+Running the app with `docker-compose`:
+```
+docker-compose up --build
+```
