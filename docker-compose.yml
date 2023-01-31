@@ -8,6 +8,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ui
-    image: titanic.ui
+    image: titanic-ui
     ports:
       - "3000:80"

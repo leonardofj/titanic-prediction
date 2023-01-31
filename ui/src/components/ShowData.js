@@ -15,7 +15,7 @@ export default function ShowData() {
     const [data, setData] = useState([{}]);
     // calling the api
     useEffect(() => {
-        axios.get("http://localhost:5000/api/list-data")
+        axios.get("/api/list-data")
             .then(res => {
                 setData(res.data);
             })
